@@ -12,7 +12,7 @@ class GameTest {
 
     private final Game game = new Game();
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "Pins toppled: {0} resulted in a score of {1}")
     @MethodSource
     void testScore(List<Integer> rolls, Integer score) {
         rolls.forEach(game::roll);
@@ -22,6 +22,7 @@ class GameTest {
 
     static Stream<Arguments> testScore() {
         return Stream.of(
+                Arguments.of(List.of(1), 1),
                 Arguments.of(List.of(0), 0)
         );
     }
